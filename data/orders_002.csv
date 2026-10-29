@@ -1,0 +1,5 @@
+order_id,customer_id,order_date,country,amount
+109,C009,2026-10-30,USA,400
+110,C010,2026-10-30,India,200
+111,C011,2026-10-30,USA,50
+112,C012,2026-10-30,USA,175
