@@ -1,0 +1,11 @@
+# Databricks Declarative Automation Bundle (formerly Asset Bundle)
+bundle:
+  name: databricks-dlt-medallion-demo
+
+include:
+  - resources/*.yml
+
+targets:
+  dev:
+    default: true
+    mode: development

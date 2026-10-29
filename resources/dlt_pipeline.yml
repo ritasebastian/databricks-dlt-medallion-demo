@@ -1,0 +1,18 @@
+# Pipeline code resides in the sql/ folder.
+# Requires an existing `main.dlt_orders_demo` schema and landing volume.
+resources:
+  pipelines:
+    dlt_orders_pipeline:
+      name: dlt_orders_pipeline
+      catalog: main
+      schema: dlt_orders_demo
+      serverless: true
+      development: true
+      continuous: false
+      libraries:
+        - file:
+            path: ../sql/01_bronze.sql
+        - file:
+            path: ../sql/02_silver.sql
+        - file:
+            path: ../sql/03_gold.sql

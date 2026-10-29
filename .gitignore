@@ -1,0 +1,9 @@
+# Local Databricks bundle state and IDE files
+.databricks/
+.idea/
+.vscode/
+.DS_Store
+__pycache__/
+*.pyc
+.env
+*.log
