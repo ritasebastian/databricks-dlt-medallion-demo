@@ -1,5 +1,4 @@
-# Databricks Declarative Automation Bundle
-# Workspace URL is not a credential. Never commit access tokens.
+# Databricks Declarative Automation Bundle (formerly Asset Bundle)
 bundle:
   name: databricks-dlt-medallion-demo
 
@@ -10,5 +9,3 @@ targets:
   dev:
     default: true
     mode: development
-    workspace:
-      host: https://dbc-431999de-fcdd.cloud.databricks.com
