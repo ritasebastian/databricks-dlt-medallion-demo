@@ -7,7 +7,6 @@ resources:
       catalog: main
       schema: dlt_orders_demo
       serverless: true
-      development: true
       continuous: false
       libraries:
         - file:

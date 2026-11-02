@@ -4,6 +4,13 @@ An end-to-end, **SQL-based** Databricks Lakeflow Spark Declarative Pipelines dem
 
 > **Status:** Source code and bundle configuration are provided. You must run and validate the pipeline in your own Databricks workspace. No workspace run is claimed here.
 
+## Your workspace and complete step-by-step guide
+
+- **Workspace:** https://dbc-431999de-fcdd.cloud.databricks.com/?o=7474657393830870
+- **CLI authentication host:** `https://dbc-431999de-fcdd.cloud.databricks.com` (omit `?o=...`)
+- **Complete implementation and GitHub update instructions:** [docs/IMPLEMENTATION_GUIDE.md](docs/IMPLEMENTATION_GUIDE.md)
+- **Bundle target host:** already configured in `databricks.yml` for `dev`.
+
 ## Project contents
 
 ```text
@@ -59,14 +66,15 @@ From your extracted project root on your Mac:
 
 ```bash
 databricks version
-databricks auth login --host https://YOUR-WORKSPACE-HOST
+databricks auth login --host https://dbc-431999de-fcdd.cloud.databricks.com --profile medallion-demo
+export DATABRICKS_CONFIG_PROFILE=medallion-demo
 databricks auth profiles
 databricks bundle validate -t dev
 databricks bundle deploy -t dev
 databricks bundle run dlt_orders_pipeline -t dev
 ```
 
-Use your workspace URL in place of `https://YOUR-WORKSPACE-HOST`. If you have multiple CLI profiles, select the intended profile using `--profile PROFILE_NAME` on the bundle commands or set `DATABRICKS_CONFIG_PROFILE`. `bundle run` triggers an update; confirm completion and metrics in **Jobs & Pipelines**. Do **not** store access tokens in this repository.
+Use the provided Databricks workspace host without the browser query parameter. If you have multiple CLI profiles, select the intended profile using `--profile PROFILE_NAME` on the bundle commands or set `DATABRICKS_CONFIG_PROFILE`. `bundle run` triggers an update; confirm completion and metrics in **Jobs & Pipelines**. Do **not** store access tokens in this repository.
 
 The deployment consists of:
 
@@ -118,6 +126,9 @@ After a successful run, add screenshots to `docs/screenshots/` and link them fro
 
 ## Step 6 — Sync your local project to GitHub
 
+**See the safer clone-and-copy approach in [the complete guide](docs/IMPLEMENTATION_GUIDE.md#11-publish-to-github-safest-workflow)** if updating a repository that already contains commits.
+
+
 For repository: <https://github.com/ritasebastian/databricks-dlt-medallion-demo>
 
 If this is a new local folder (no `.git` directory), connect it to your existing GitHub repo:
@@ -164,3 +175,12 @@ If `origin` already exists, do not add it again. If the remote has commits not p
 ## Learning outcomes
 
 Delta Lake tables, Auto Loader, streaming tables, Lakeflow pipeline SQL, data quality expectations, materialized views, Declarative Automation Bundles, incremental updates, and GitHub version control.
+
+
+## GitHub proof and automation (Nov 2026)
+
+- [Actual Databricks screenshots](docs/SCREENSHOTS.md)
+- [Optional file-arrival job and testing steps](docs/EVENT_TRIGGER.md)
+- `resources/file_arrival_job.yml` adds a file-arrival-triggered Lakeflow Job, subject to workspace support.
+- `resources/dlt_pipeline.yml` no longer uses deprecated `development: true`; development mode is selected via `databricks.yml` target.
+- Verify `git status` is clean before copying into an existing clone. Do **not** overwrite the `.git` directory.
